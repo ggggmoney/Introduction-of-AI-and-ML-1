@@ -15,27 +15,62 @@
 * [cite_start]**Likelihood Function**: $L(\theta) = P(D|\theta)$ 
 * **MLE의 목적 함수**:
 $$\hat{\theta} = \text{argmax}_{\theta} \text{[P(D|\theta)]}$$
-* [cite_start]**동전 던지기(Binomial)에서의 MLE**: 앞면이 $a_H$번, 뒷면이 $a_T$번 나왔을 때, 앞면이 나올 확률 $\hat{\theta}$은 **$[a_H/(a_H+a_T)]$** 입니다. 
+* [cite_start]**동전 던지기(Binomial)에서의 MLE**: 앞면이 $a_H$번, 뒷면이 $a_T$번 나왔을 때, 앞면이 나올 확률 $\hat{\theta}$은 **$\frac{a_H}{a_H + a_T}$** 입니다. 
 
 ## 3. 베이즈 정리와 MAP (Bayes' Theorem & MAP)
 [cite_start]사전 지식(Prior)을 활용하여 데이터가 주어졌을 때의 사후 확률을 추정하는 방식입니다. 
 
 * **Bayes' Theorem**:
 $$P(\theta|D) = \frac{P(D|\theta)P(\theta)}{P(D)}$$
-* [cite_start]**$P(\theta|D)$**: **[ (3) ]** (Posterior) 
-* [cite_start]**$P(D|\theta)$**: **[ (4) ]** (Likelihood) 
-* [cite_start]**$P(\theta)$**: **[ (5) ]** (Prior) 
+* [cite_start]**$P(\theta|D)$**: **[사후 확률]** (Posterior) 
+* [cite_start]**$P(D|\theta)$**: **[우도]** (Likelihood) 
+* [cite_start]**$P(\theta)$**: **[사전 확률]** (Prior Knowledge) 
+* [cite_start]**$P(D)$**: **[정규화 상수]** (Normalizing Constant) 
 
 * [cite_start]**MAP (Maximum A Posteriori)**: 사후 확률을 최대화하는 파라미터를 찾습니다. [cite: 3]
 $$\hat{\theta}_{MAP} = \text{argmax}_{\theta} P(D|\theta)P(\theta)$$
 
-## 4. 켤레 사전 분포 (Conjugate Prior)
-[cite_start]이항 분포(Likelihood)에 대해 사후 확률(Posterior)이 사전 확률(Prior)과 같은 분포 가족이 되도록 하는 분포입니다. 
+# Probability Distribution (확률 분포) 요약
 
-* [cite_start]이항 분포의 켤레 사전 분포는 **[ (6) ]** 분포입니다. 
-* [cite_start]이 분포의 파라미터 $\alpha, \beta$는 데이터가 관측되기 전 미리 가지고 있는 **[ (7) ]**의 의미를 가집니다. 
+## 1. 확률 분포 개요 (Overview)
+* **정의**: 무작위 시행, 실험, 설문 등의 잠재적 사건 부분집합에 확률을 할당함
+* **기능**: 사건을 확률로 매핑하는 함수 (확률의 공리 준수 필요)
+* **사건의 유형**:
+    * **연속 수치 (Continuous numeric value)**: 측정되는 연속적인 데이터
+    * **이산 범주 (Discrete categorical value)**: 분류되는 불연속적 데이터
+* **주요 표현**:
+    * **PDF (Probability Density Function)**: 확률 밀도 함수, $f(x)$
+    * **CDF (Cumulative Distribution Function)**: 누적 분포 함수, $\int_{-\infty}^{x} f(x) dx$
 
 ---
+
+## 2. 주요 확률 분포
+
+### 정규 분포 (Normal Distribution)
+* **특징**: 연속 수치 데이터에서 가장 흔히 관찰되는 분포
+* **수식**: $f(x; \mu, \sigma) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$
+* **표기**: $N(\mu, \sigma^2)$
+* **통계량**: 평균 $\mu$, 분산 $\sigma^2$
+
+### 베타 분포 (Beta Distribution)
+* **특징**: $[0, 1]$ 사이의 닫힌 구간을 가지며, 확률의 특성을 모델링하기 좋음
+* **수식**: $f(\theta; \alpha, \beta) = \frac{\theta^{\alpha-1}(1-\theta)^{\beta-1}}{B(\alpha, \beta)}$
+* **표기**: $\text{Beta}(\alpha, \beta)$
+* **통계량**: 평균 $\frac{\alpha}{\alpha+\beta}$, 분산 $\frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}$
+
+### 이항 분포 (Binomial Distribution)
+* **특징**: 이산형 값을 위한 가장 단순한 분포 (베르누이 시행: 0 또는 1)
+* **수식**: $f(\theta; n, p) = \binom{n}{k} p^k (1-p)^{n-k}$
+* **표기**: $B(n, p)$
+* **통계량**: 평균 $np$, 분산 $np(1-p)$
+
+### 다항 분포 (Multinomial Distribution)
+* **특징**: 이항 분포의 일반화 (Yes/No를 넘어 여러 범주 선택 시 사용)
+* **활용**: 단어 선택(Word selection), 클러스터 선택 모델링 등
+* **수식**: $f(x_1, \dots, x_k; n, p_1, \dots, p_k) = \frac{n!}{x_1! \dots x_k!} p_1^{x_1} \dots p_k^{x_k}$
+* **표기**: $\text{Mult}(P), P = <p_1, \dots, p_k>$
+* **통계량**: 평균 $E(x_i) = np_i$, 분산 $\text{Var}(x_i) = np_i(1-p_i)$
+
 
 ## ✅ 정답 확인 (Answer Key)
 
