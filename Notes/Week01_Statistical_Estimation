@@ -1,0 +1,53 @@
+# 📒 Week 1: Statistical Estimation (MLE & MAP)
+
+---
+
+## 1. 기계학습의 정의 (Definition of Machine Learning)
+[cite_start]기계학습은 컴퓨터 프로그램이 경험(E)으로부터 학습하여, 특정 작업(T)을 수행할 때 성능(P)이 향상되는 것을 의미합니다. 
+
+* [cite_start]**Experience (E)**: 관측된 데이터셋 (예: 동전 던지기 결과) 
+* [cite_start]**Task (T)**: 해결하고자 하는 문제 (예: 다음에 앞면이 나올지 예측) 
+* [cite_start]**Performance (P)**: 모델의 정확도나 성능 측정 지표 
+
+## 2. 최대 우도 추정 (Maximum Likelihood Estimation, MLE)
+[cite_start]MLE는 관측된 데이터 $D$가 발생할 확률인 **우도(Likelihood)**를 최대화하는 파라미터 $\theta$를 찾는 빈도주의적 접근 방식입니다. 
+
+* [cite_start]**Likelihood Function**: $L(\theta) = P(D|\theta)$ 
+* **MLE의 목적 함수**:
+$$\hat{\theta} = \text{argmax}_{\theta} \text{[P(D|\theta)]}$$
+* [cite_start]**동전 던지기(Binomial)에서의 MLE**: 앞면이 $a_H$번, 뒷면이 $a_T$번 나왔을 때, 앞면이 나올 확률 $\hat{\theta}$은 **$[a_H/(a_H+a_T)]$** 입니다. 
+
+## 3. 베이즈 정리와 MAP (Bayes' Theorem & MAP)
+[cite_start]사전 지식(Prior)을 활용하여 데이터가 주어졌을 때의 사후 확률을 추정하는 방식입니다. 
+
+* **Bayes' Theorem**:
+$$P(\theta|D) = \frac{P(D|\theta)P(\theta)}{P(D)}$$
+* [cite_start]**$P(\theta|D)$**: **[ (3) ]** (Posterior) 
+* [cite_start]**$P(D|\theta)$**: **[ (4) ]** (Likelihood) 
+* [cite_start]**$P(\theta)$**: **[ (5) ]** (Prior) 
+
+* [cite_start]**MAP (Maximum A Posteriori)**: 사후 확률을 최대화하는 파라미터를 찾습니다. [cite: 3]
+$$\hat{\theta}_{MAP} = \text{argmax}_{\theta} P(D|\theta)P(\theta)$$
+
+## 4. 켤레 사전 분포 (Conjugate Prior)
+[cite_start]이항 분포(Likelihood)에 대해 사후 확률(Posterior)이 사전 확률(Prior)과 같은 분포 가족이 되도록 하는 분포입니다. 
+
+* [cite_start]이항 분포의 켤레 사전 분포는 **[ (6) ]** 분포입니다. 
+* [cite_start]이 분포의 파라미터 $\alpha, \beta$는 데이터가 관측되기 전 미리 가지고 있는 **[ (7) ]**의 의미를 가집니다. 
+
+---
+
+## ✅ 정답 확인 (Answer Key)
+
+<details>
+<summary>여기를 눌러 정답을 확인하세요!</summary>
+
+1. [cite_start]**$P(D|\theta)$** (또는 $L(\theta)$) 
+2. [cite_start]**$\frac{a_H}{a_H + a_T}$** 
+3. [cite_start]**사후 확률** (관측 후의 확률) 
+4. [cite_start]**우도** (파라미터 조건 하의 데이터 확률) 
+5. [cite_start]**사전 확률** (관측 전의 배경 지식) 
+6. [cite_start]**베타(Beta)** 
+7. [cite_start]**가상 관측치(Virtual counts)** 
+
+</details>
